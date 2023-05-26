@@ -2,17 +2,17 @@ class AnimalsController < ApplicationController
 
 
     def index
-        animal= Animals.all
-        render json:animal
+        animals =Animal.all
+        render json:animals
     end
 
     def show
-        animal = Animal.find(params[:id])
-        render json: animal
+        animals =Animal.find(params[:id])
+        render json: animals
     end
 
     def create
-        animal = Animal.create(animal_params)
+        animals = Animal.create(animal_params)
         if animal.valid?
             render json:animal
         else
@@ -21,22 +21,22 @@ class AnimalsController < ApplicationController
     end
 
     def update
-        animal = Animal.find(params[:id])
-        animal.update(animal_params)
-        if animal.valid?
-            render json:animal
+        animals = Animal.find(params[:id])
+        animals.update(animal_params)
+        if animals.valid?
+            render json:animals
         else
-            render json: animal.errors
+            render json: animals.errors
         end
     end
 
     def destroy
-        animal = Animal.find(params[:id])
-        animal.destroy
-        if animal.destroy
-            render json: animal
+        animals = Animal.find(params[:id])
+        animals.destroy
+        if animals.destroy
+            render json: animals
         else 
-            render json: animal.errors
+            render json: animals.errors
         end
     end
         
@@ -44,6 +44,6 @@ class AnimalsController < ApplicationController
 
     private
         def animal_params
-            params.require(:animal).permit(:common_name, :scientific_binomial)
+            params.require(:animals).permit(:common_name, :scientific_binomial)
         end
 end
