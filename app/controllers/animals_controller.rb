@@ -13,10 +13,10 @@ class AnimalsController < ApplicationController
 
     def create
         animals = Animal.create(animal_params)
-        if animal.valid?
-            render json:animal
+        if animals.valid?
+            render json:animals
         else
-            render json: animal.errors
+            render json: animals.errors
         end
     end
 
@@ -44,6 +44,6 @@ class AnimalsController < ApplicationController
 
     private
         def animal_params
-            params.require(:animals).permit(:common_name, :scientific_binomial)
+            params.require(:animal).permit(:common_name, :scientific_binomial)
         end
 end
